@@ -1,2 +1,2 @@
-6.83
+30.61
 sensor1-temperature
