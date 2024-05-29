@@ -20,7 +20,11 @@ def execute():
         sleep(15)
     
     while True:
-        co2_str = cf.readFile("co2level")
-        message = SensorRequestMessage("chavepix", "co2", f"{co2id}", "PPM", f"{co2_str}")
-        sleep(1)
-        send_request("127.0.0.1", p.UDPSERVERPORT, message)
+        try:
+            co2_str = cf.readFile("co2level")
+            message = SensorRequestMessage("chavepix", "co2", f"{co2id}", "PPM", f"{co2_str}")
+            sleep(1)
+            send_request("127.0.0.1", p.UDPSERVERPORT, message)
+            print("CO2 level sent")
+        except Exception as e:
+            print(e)

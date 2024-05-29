@@ -5,6 +5,14 @@ import json
 def keep_temperature():
     HOST = "127.0.0.1"
     TCPPORT = 65434
+
+    if gv.TEMPERATUREID is None:
+        print("Sensor de temperatura não está conectado")
+        return
+
+    if gv.HEATERID is None and gv.COOLERID is None:
+        print("Aquecedor e refrigerador não estão conectados")
+        return
     try:
         if gv.TEMPERATURE <= gv.TEMPERATUREMIN + (1 / 100 * gv.TEMPERATUREMIN):
             if gv.HEATERSTATUS == "DISABLED":  # Deixar o aquecedor ligado

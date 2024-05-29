@@ -20,7 +20,11 @@ def execute():
         sleep(15)
     
     while True:
-        temperature_str = cf.readFile("temperature")
-        message = SensorRequestMessage("chavepix", "temperature", f"{temperatureid}", "CELSIUS", f"{temperature_str}")
-        sleep(1)
-        send_request("127.0.0.1", p.UDPSERVERPORT, message)
+        try:
+            temperature_str = cf.readFile("temperature")
+            message = SensorRequestMessage("chavepix", "temperature", f"{temperatureid}", "CELSIUS", f"{temperature_str}")
+            sleep(1)
+            send_request("127.0.0.1", p.UDPSERVERPORT, message)
+            print("Temperature level sent")
+        except Exception as e:
+            print(e)

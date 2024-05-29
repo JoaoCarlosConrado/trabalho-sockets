@@ -105,12 +105,15 @@ tcp_server_socket.listen()
 
 def socket_tcp():
     while True:
-        print("Servidor TCP aguardando conexões...")
-        # Aceita uma nova conexão TCP
-        conn, addr = tcp_server_socket.accept()
-        # Inicia uma nova thread para lidar com o cliente TCP
-        tcp_client_thread = threading.Thread(target=handle_tcp_client, args=(conn, addr))
-        tcp_client_thread.start()
+        try:
+            print("Servidor TCP aguardando conexões...")
+            # Aceita uma nova conexão TCP
+            conn, addr = tcp_server_socket.accept()
+            # Inicia uma nova thread para lidar com o cliente TCP
+            tcp_client_thread = threading.Thread(target=handle_tcp_client, args=(conn, addr))
+            tcp_client_thread.start()
+        except Exception as e:
+            print("Erro ao aceitar conexão TCP:", e)
 
 # Cria um socket UDP/IP
 udp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -120,12 +123,15 @@ udp_server_socket.bind((HOST, UDPPORT))
 
 def socket_udp():
     while True:
-        print("Servidor UDP aguardando mensagens...")
-        # Recebe a mensagem UDP e o endereço do cliente
-        data, addr = udp_server_socket.recvfrom(1024)
-        # Inicia uma nova thread para lidar com a mensagem UDP
-        udp_client_thread = threading.Thread(target=handle_udp_message, args=(data, addr))
-        udp_client_thread.start()
+        try:
+            print("Servidor UDP aguardando mensagens...")
+            # Recebe a mensagem UDP e o endereço do cliente
+            data, addr = udp_server_socket.recvfrom(1024)
+            # Inicia uma nova thread para lidar com a mensagem UDP
+            udp_client_thread = threading.Thread(target=handle_udp_message, args=(data, addr))
+            udp_client_thread.start()
+        except Exception as e:
+            print("Erro ao receber mensagem UDP:", e)
 
 # Inicia as threads para os sockets TCP e UDP
 tcp_thread = threading.Thread(target=socket_tcp)
@@ -135,8 +141,8 @@ udp_thread.start()
 
 # Manter medições dentro das configurações de temperatura, umidade e nível de CO2
 def keep_measurements():
-    time.sleep(5)
     while True:
+        time.sleep(5)
         keep_temperature()
         keep_humidity()
         keep_co2()

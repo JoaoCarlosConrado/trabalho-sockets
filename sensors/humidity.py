@@ -19,7 +19,11 @@ def execute():
         sleep(15)
 
     while True:
-        humidity_str = cf.readFile("humidity")
-        message = SensorRequestMessage("chavepix", "humidity", f"{humidityid}", "PERCENTAGE", f"{humidity_str}")
-        sleep(1)
-        send_request("127.0.0.1", p.UDPSERVERPORT, message)
+        try:
+            humidity_str = cf.readFile("humidity")
+            message = SensorRequestMessage("chavepix", "humidity", f"{humidityid}", "PERCENTAGE", f"{humidity_str}")
+            sleep(1)
+            send_request("127.0.0.1", p.UDPSERVERPORT, message)
+            print("Humidity level sent")
+        except Exception as e:
+            print(e)
