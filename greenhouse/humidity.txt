@@ -1,2 +1,2 @@
-68.49
+39.37
 sensor1-humidity

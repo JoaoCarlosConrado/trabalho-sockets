@@ -1,2 +1,2 @@
-ACTIVE
+DISABLED
 cooler-1

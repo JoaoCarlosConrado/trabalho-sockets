@@ -5,6 +5,14 @@ import json
 def keep_humidity():
     HOST = "127.0.0.1"
     TCPPORT = 65434
+
+    if gv.HUMIDITYID is None:
+        print("Sensor de humidade não está conectado")
+        return
+
+    if gv.IRRIGATIONSYSTEMID is None:
+        print("Sistema de irrigação não está conectado")
+        return
     try:
         if gv.HUMIDITY <= gv.HUMIDITYMIN + (1 / 100 * gv.HUMIDITYMIN):
             if gv.IRRIGATIONSYSTEMSTATUS == "DISABLED":  # Ativando o sistema de irrigação
