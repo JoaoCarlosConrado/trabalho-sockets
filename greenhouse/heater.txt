@@ -1,2 +1,2 @@
-DISABLED
+ACTIVE
 heater-1

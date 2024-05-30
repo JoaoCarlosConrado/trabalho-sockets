@@ -3,11 +3,17 @@ import client.globalVars as gv
 
 
 def setupDataScreen(type):
-    print(f"setting the {type}")
-    print("Set Min Value: ")
-    min_ = input()
-    print("Set Max Value: ")
-    max_ = input()
+    print("╔════════════════════════════════════╗")
+    print(f"║       Setting the {type.capitalize():<17}║")
+    print("╠════════════════════════════════════╣")
+    print("  Set Min Value:                     ")
+    
+    min_ = input("  > ")
+    print("╚════════════════════════════════════╝")
+    print("╔════════════════════════════════════╗")
+    print("  Set Max Value:                     ")
+    max_ = input("  > ")
+    print("╚════════════════════════════════════╝")
 
     if type == "temperature":
         unit_of_measurement = "CELSIUS"

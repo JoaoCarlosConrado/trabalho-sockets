@@ -4,12 +4,15 @@ import client.globalVars as gv
 import json
 
 def mainScreen():
-    print("Main Screen")
-    print("1. View Temperature")
-    print("2. View Humidity Percentage")
-    print("3. View CO2 Level")
-    print("4. Setting up Greenhouse")
-    print("0. Exit")
+    print("╔════════════════════════════════════╗")
+    print("║          Main Screen               ║")
+    print("╠════════════════════════════════════╣")
+    print("║ 1. View Temperature                ║")
+    print("║ 2. View Humidity Percentage        ║")
+    print("║ 3. View CO2 Level                  ║")
+    print("║ 4. Setting up Greenhouse           ║")
+    print("║ 0. Exit                            ║")
+    print("╚════════════════════════════════════╝")
     choice = input("Enter your choice: ")
     if choice == "1":
         getTemperature()
@@ -31,7 +34,9 @@ def getTemperature():
         response = send_request("127.0.0.1", 65433, message)
         response = json.loads(response)
         if response["status"] == "OK":
-            print(f"Temperature: {response["value"]}°C")
+            print("╔════════════════════════════════════╗")
+            print(f"  Temperature: {response['value']}°C")
+            print("╚════════════════════════════════════╝")
         else:
             raise Exception(response["message"])  # Aqui você levanta uma exceção caso o status não seja "OK"
     except Exception as e:
@@ -44,7 +49,9 @@ def getHumidity():
         response = send_request("127.0.0.1", 65433, message)
         response = json.loads(response)
         if response["status"] == "OK":
-            print(f"Humidity: {response['value']}%")
+            print("╔════════════════════════════════════╗")
+            print(f"  Humidity: {response['value']}%")
+            print("╚════════════════════════════════════╝")
         else:
             raise Exception(response["message"])
     except Exception as e:
@@ -57,7 +64,9 @@ def getCO2Level():
         response = send_request("127.0.0.1", 65433, message)
         response = json.loads(response)
         if response["status"] == "OK":
-            print(f"CO2 Level: {response['value']}PPM")
+            print("╔════════════════════════════════════╗")
+            print(f"  CO2 Level: {response['value']}PPM")
+            print("╚════════════════════════════════════╝")
         else:
             raise Exception(response["message"])
     except Exception as e:
